@@ -1,56 +1,37 @@
-# Build output
-target/
+HELP.md
+.gradle
 build/
-out/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
 
-# gradle
-/.gradle/
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.ear
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-
-# IntelliJ
-.idea
-*.iml
-*.iws
-*.ipr
-*.ids
-*.orig
-
-# Eclipse
-*.pydevproject
-.project
-.metadata
-/bin/**
-/tmp/**
-/tmp/**/*
-*.tmp
-*.bak
-*.swp
-*~.nib
-local.properties
+### STS ###
+.apt_generated
 .classpath
-.settings/**
-.loadpath
-/src/main/resources/rebel.xml
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
 
-# External tool builders
-.externalToolBuilders/**
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
 
-# Locally stored "Eclipse launch configurations"
-*.launch
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
 
-# CDT-specific
-.cproject
-
-# PDT-specific
-.buildpath
-integration_test_settings.yml
+### VS Code ###
+.vscode/
