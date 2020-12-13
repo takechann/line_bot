@@ -37,7 +37,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.google.common.io.ByteStreams;
+// import com.google.common.io.ByteStreams;
 
 import com.linecorp.bot.client.LineBlobClient;
 import com.linecorp.bot.client.LineMessagingClient;
@@ -665,7 +665,7 @@ public class KitchenSinkController {
 
         DownloadedContent tempFile = createTempFile(ext);
         try (OutputStream outputStream = Files.newOutputStream(tempFile.path)) {
-            ByteStreams.copy(responseBody.getStream(), outputStream);
+            // ByteStreams.copy(responseBody.getStream(), outputStream);
             log.info("Saved {}: {}", ext, tempFile);
             return tempFile;
         } catch (IOException e) {
