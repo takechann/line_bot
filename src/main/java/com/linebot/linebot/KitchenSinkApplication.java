@@ -37,7 +37,7 @@ public class KitchenSinkApplication {
 
     public static void main(String[] args) throws IOException {
         downloadedContentDir = Files.createTempDirectory("line-bot");
-        final SpringApplication springApplication = new SpringApplication(LinebotApplication.class);
+        final SpringApplication springApplication = new SpringApplication(KitchenSinkApplication.class);
         springApplication.run(args);
     }
 
