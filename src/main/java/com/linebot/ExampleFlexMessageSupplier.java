@@ -14,7 +14,7 @@
  * under the License.
  */
 
-package com.linebot.linebot;
+package com.linebot;
 
 import static java.util.Arrays.asList;
 

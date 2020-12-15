@@ -14,7 +14,7 @@
  * under the License.
  */
 
-package com.linebot.linebot;
+package com.linebot;
 
 import java.util.Arrays;
 import java.util.List;

@@ -14,7 +14,7 @@
  * under the License.
  */
 
-package com.linebot.linebot;
+package com.linebot;
 
 import java.io.IOException;
 import java.nio.file.Files;
