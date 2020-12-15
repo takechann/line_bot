@@ -26,6 +26,8 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'com.linecorp.bot:line-bot-spring-boot:4.3.0'
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	runtime('org.postgresql:postgresql')
 }
 
 test {
