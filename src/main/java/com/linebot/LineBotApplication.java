@@ -32,12 +32,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @LineMessageHandler
-public class KitchenSinkApplication {
+public class LineBotApplication {
     static Path downloadedContentDir;
 
     public static void main(String[] args) throws IOException {
         downloadedContentDir = Files.createTempDirectory("line-bot");
-        final SpringApplication springApplication = new SpringApplication(KitchenSinkApplication.class);
+        final SpringApplication springApplication = new SpringApplication(LineBotApplication.class);
         springApplication.run(args);
     }
 

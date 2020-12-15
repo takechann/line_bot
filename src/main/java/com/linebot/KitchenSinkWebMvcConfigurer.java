@@ -28,7 +28,7 @@ public class KitchenSinkWebMvcConfigurer implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
-        String downloadedContentUri = KitchenSinkApplication.downloadedContentDir
+        String downloadedContentUri = LineBotApplication.downloadedContentDir
                 .toUri().toASCIIString();
         log.info("downloaded dir: {}", downloadedContentUri);
         registry.addResourceHandler("/downloaded/**")
