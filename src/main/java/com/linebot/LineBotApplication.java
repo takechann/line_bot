@@ -78,20 +78,39 @@ public class LineBotApplication {
             return new TextMessage("該当者が複数いるので、選択してください。");
         }
 
-        // 以降の処理はは該当者1件のケースとなる
+        // 以降の処理は該当者1件のケースとなる
         // 該当者が投手かもしれないので、投手で検索する
         List<Pitcher> pitcherSelectList = pitcherService.selectName(event.getMessage().getText());
         logger.info("pitcherSelectList: " + pitcherSelectList);
 
         // 投手 or 野手
+        StringBuilder message = new StringBuilder();
         if(pitcherSelectList.size() == 0) {
-            // 野手
+            // 野手の場合
             logger.info("野手です");
-            return new TextMessage("野手です。");
+
+            message.append(fielderSelectList.get(0).getName() + "（野手）\n");
+            message.append("打率：" + fielderSelectList.get(0).getBatting_average() + "\n");
+            message.append("打数：" + fielderSelectList.get(0).getAt_bats() + "\n");
+            message.append("安打：" + fielderSelectList.get(0).getHit() + "\n");
+            message.append("本塁打：" + fielderSelectList.get(0).getHome_run() + "\n");
+            message.append("打点：" + fielderSelectList.get(0).getRbi() + "\n");
+            message.append("OPS：" + fielderSelectList.get(0).getOps());
+            return new TextMessage(message.toString());
         } else if(pitcherSelectList.size() == 1) {
             // 投手
             logger.info("投手です");
-            return new TextMessage("投手です。");
+
+            message.append(pitcherSelectList.get(0).getName() + "（投手）\n");
+            message.append("防御率：" + pitcherSelectList.get(0).getEra() + "\n");
+            message.append("投球回：" + pitcherSelectList.get(0).getPitching_times() + "\n");
+            message.append("勝利：" + pitcherSelectList.get(0).getWinning() + "\n");
+            message.append("敗戦：" + pitcherSelectList.get(0).getDefeat() + "\n");
+            message.append("ホールド：" + pitcherSelectList.get(0).getHold() + "\n");
+            message.append("セーブ：" + pitcherSelectList.get(0).getSave() + "\n");
+            message.append("奪三振：" + pitcherSelectList.get(0).getStrikeout());
+
+            return new TextMessage(message.toString());
         }
         // エラー
         return new TextMessage("エラーが発生しました。もう一度検索してください。");

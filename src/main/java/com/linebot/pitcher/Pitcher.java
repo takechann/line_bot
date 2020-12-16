@@ -16,47 +16,47 @@ public class Pitcher {
     @Column(name="name")
     private String name;
 
-    @Column(name="game")
-    private int game;
+    @Column(name="pitching_count")
+    private int pitching_count;
 
-    @Column(name="pa")
-    private int pa;
+    @Column(name="winning")
+    private int winning;
 
-    @Column(name="at_bats")
-    private int at_bats;
+    @Column(name="defeat")
+    private int defeat;
 
-    @Column(name="score")
-    private int score;
+    @Column(name="save")
+    private int save;
+
+    @Column(name="hold")
+    private int hold;
+
+    @Column(name="hp")
+    private int hp;
+
+    @Column(name="complete_game")
+    private int complete_game;
+
+    @Column(name="shutout")
+    private int shutout;
+
+    @Column(name="no_four_balls")
+    private int no_four_balls;
+
+    @Column(name="win_rate")
+    private double win_rate;
+
+    @Column(name="batter")
+    private int batter;
+
+    @Column(name="pitching_times")
+    private double pitching_times;
 
     @Column(name="hit")
     private int hit;
 
-    @Column(name="two_baser")
-    private int two_baser;
-
-    @Column(name="three_baser")
-    private int three_baser;
-
     @Column(name="home_run")
     private int home_run;
-
-    @Column(name="base_hit")
-    private int base_hit;
-
-    @Column(name="rbi")
-    private int rbi;
-
-    @Column(name="steal")
-    private int steal;
-
-    @Column(name="caught_stealing")
-    private int caught_stealing;
-
-    @Column(name="sacrifice_hit")
-    private int sacrifice_hit;
-
-    @Column(name="sacrifice_fly")
-    private int sacrifice_fly;
 
     @Column(name="four_balls")
     private int four_balls;
@@ -70,19 +70,19 @@ public class Pitcher {
     @Column(name="strikeout")
     private int strikeout;
 
-    @Column(name="double_play")
-    private int double_play;
+    @Column(name="wild_pitch")
+    private int wild_pitch;
 
-    @Column(name="batting_average")
-    private double batting_average;
+    @Column(name="boke")
+    private int boke;
 
-    @Column(name="slugging_percentage")
-    private double slugging_percentage;
+    @Column(name="loss")
+    private int loss;
 
-    @Column(name="on_base_percentage")
-    private double on_base_percentage;
+    @Column(name="earned_loss")
+    private int earned_loss;
 
-    @Column(name="ops")
-    private double ops;
+    @Column(name="era")
+    private double era;
 
 }
