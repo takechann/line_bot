@@ -65,8 +65,11 @@ public class LineBotApplication {
         System.out.println("selectName: " + selectName);
 
         // 野手のほうが候補数が多いので、野手で検索する
-        List<Fielder> fielderSelectList = fielderService.selectName(event.getMessage().getText());
+        List<Fielder> fielderSelectList = fielderService.selectName(selectName);
         logger.info("fielderSelectList: " + fielderSelectList);
+
+        // LineBotに返却するメッセージ
+        StringBuilder message = new StringBuilder();
 
         if(fielderSelectList.size() == 0) {
             // 該当者がいない場合
@@ -74,8 +77,27 @@ public class LineBotApplication {
             return new TextMessage("該当者がいません。もう一度検索してください。");
         } else if(fielderSelectList.size() > 1) {
             // 該当者が複数いる場合
-            // TODO: 名前を選択させる
-            return new TextMessage("該当者が複数いるので、選択してください。");
+            if (fielderSelectList.size() > 20){
+                // 該当者が20人より多い場合
+                return new TextMessage("該当者が多すぎるので、検索条件を絞ってください（"
+                  + fielderSelectList.size() +"件ヒットしました。）");
+            }
+
+            // TODO: 本来は名前を選択させたい
+            message.append("該当者が複数人いました。\n再度入力してください。\n");
+            message.append("\n");
+            message.append("【該当者一覧】\n");
+            for (int i = 0; i < fielderSelectList.size(); i++) {
+                // チーム名の取得
+                String teamName = this.convertInitialtoName(fielderSelectList.get(i).getTeam_initial());
+                // 該当者名を格納
+                if (i == fielderSelectList.size()-1) {
+                    message.append("(" + teamName + ")" + fielderSelectList.get(i).getName());
+                } else {
+                    message.append("(" + teamName + ")" + fielderSelectList.get(i).getName()+ "\n");
+                }
+            }
+            return new TextMessage(message.toString());
         }
 
         // 以降の処理は該当者1件のケースとなる
@@ -84,12 +106,15 @@ public class LineBotApplication {
         logger.info("pitcherSelectList: " + pitcherSelectList);
 
         // 投手 or 野手
-        StringBuilder message = new StringBuilder();
         if(pitcherSelectList.size() == 0) {
             // 野手の場合
             logger.info("野手です");
 
-            message.append(fielderSelectList.get(0).getName() + "（野手）\n");
+            // チーム名の取得
+            String teamName = this.convertInitialtoName(fielderSelectList.get(0).getTeam_initial());
+
+            message.append("【2020年 野手データ】\n");
+            message.append(fielderSelectList.get(0).getName() + "(" + teamName +")\n");
             message.append("打率：" + fielderSelectList.get(0).getBatting_average() + "\n");
             message.append("打数：" + fielderSelectList.get(0).getAt_bats() + "\n");
             message.append("安打：" + fielderSelectList.get(0).getHit() + "\n");
@@ -101,7 +126,11 @@ public class LineBotApplication {
             // 投手
             logger.info("投手です");
 
-            message.append(pitcherSelectList.get(0).getName() + "（投手）\n");
+            // チーム名の取得
+            String teamName = this.convertInitialtoName(fielderSelectList.get(0).getTeam_initial());
+
+            message.append("【2020年 投手データ】\n");
+            message.append(pitcherSelectList.get(0).getName() + "(" + teamName +")\n");
             message.append("防御率：" + pitcherSelectList.get(0).getEra() + "\n");
             message.append("投球回：" + pitcherSelectList.get(0).getPitching_times() + "\n");
             message.append("勝利：" + pitcherSelectList.get(0).getWinning() + "\n");
@@ -120,5 +149,50 @@ public class LineBotApplication {
     @EventMapping
     public void handleDefaultMessageEvent(Event event) {
         System.out.println("event: " + event);
+    }
+
+    public String convertInitialtoName(String inistial) {
+        String teamName = "";
+        switch (inistial) {
+            case "s":
+                teamName = "ヤ";
+                break;
+            case "d":
+                teamName = "中";
+                break;
+            case "c":
+                teamName = "広";
+                break;
+            case "g":
+                teamName = "巨";
+                break;
+            case "t":
+                teamName = "神";
+                break;
+            case "db":
+                teamName = "De";
+                break;
+            case "l":
+                teamName = "西";
+                break;
+            case "h":
+                teamName = "ソ";
+                break;
+            case "e":
+                teamName = "楽";
+                break;
+            case "m":
+                teamName = "ロ";
+                break;
+            case "f":
+                teamName = "日";
+                break;
+            case "b":
+                teamName = "オ";
+                break;
+            default:
+                break;
+        }
+        return teamName;
     }
 }

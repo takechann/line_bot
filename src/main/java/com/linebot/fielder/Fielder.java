@@ -85,4 +85,6 @@ public class Fielder {
     @Column(name="ops")
     private double ops;
 
+    @Column(name="team_initial")
+    private String team_initial;
 }

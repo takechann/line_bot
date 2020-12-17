@@ -85,4 +85,6 @@ public class Pitcher {
     @Column(name="era")
     private double era;
 
+    @Column(name="team_initial")
+    private String team_initial;
 }
